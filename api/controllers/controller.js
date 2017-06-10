@@ -11,18 +11,19 @@ exports.make_transfer = function(req, res) {
   			password: 'alice'
 		})
 
-		if(req.method == 'POST') {
-			var body = "";
+  // 		console.log(req.body);
+		// if(req.method == 'POST') {
+		// 	var body = "";
 
-			req.on('data', function (chunk) {
-				body += chunk;
-			});
+		// 	req.on('data', function (chunk) {
+		// 		body += chunk;
+		// 	});
 
 
-			req.on('end', function () {
-				console.log(body);
-			});
-		}
+		// 	req.on('end', function () {
+		// 		console.log(body);
+		// 	});
+		// }
 
 		await plugin.connect()
 		console.log('plugin connected')
@@ -37,9 +38,10 @@ exports.make_transfer = function(req, res) {
 		// we can attach an arbitrary JSON object to the payment if we want it
 		// to be sent to the receiver.
 		payment.memo = { message: 'hello!' }
-		
+
 		await SPSP.sendPayment(plugin, payment)
 		res.send(JSON.stringify(payment));
+
 		console.log('receiver claimed funds!')
 	})()
   	
