@@ -41,11 +41,8 @@ exports.make_transfer = function(req, res) {
 		// to be sent to the receiver.
 		payment.memo = { message: req.body.message }
 
-		SPSP.sendPayment(plugin, payment).then(function (res){
-			res.send(JSON.stringify(payment));
-		}).catch(function(e) {
-		    res.send(e);
-		});
+		await SPSP.sendPayment(plugin, payment);
+		res.send(JSON.stringify(payment));
 
 		console.log('receiver claimed funds!')
 	})()
