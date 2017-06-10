@@ -11,7 +11,7 @@ exports.make_transfer = function(req, res) {
   			password: 'alice'
 		})
 
-  // 		console.log(req.body);
+  		console.log(req.body);
 		// if(req.method == 'POST') {
 		// 	var body = "";
 
