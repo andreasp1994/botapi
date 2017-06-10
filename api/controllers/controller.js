@@ -37,11 +37,9 @@ exports.make_transfer = function(req, res) {
 		// we can attach an arbitrary JSON object to the payment if we want it
 		// to be sent to the receiver.
 		payment.memo = { message: 'hello!' }
-
-		res.send(JSON.stringify(payment));
 		
 		await SPSP.sendPayment(plugin, payment)
-		
+		res.send(JSON.stringify(payment));
 		console.log('receiver claimed funds!')
 	})()
   	
