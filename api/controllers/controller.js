@@ -11,19 +11,18 @@ exports.make_transfer = function(req, res) {
   			password: 'alice'
 		})
 
-  		console.log(res.body);
-		// if(req.method == 'POST') {
-		// 	var body = "";
+		if(req.method == 'POST') {
+			var body = "";
 
-		// 	req.on('data', function (chunk) {
-		// 		body += chunk;
-		// 	});
+			req.on('data', function (chunk) {
+				body += chunk;
+			});
 
 
-		// 	req.on('end', function () {
-		// 		console.log(body);
-		// 	});
-		// }
+			req.on('end', function () {
+				console.log(body);
+			});
+		}
 
 		await plugin.connect()
 		console.log('plugin connected')
