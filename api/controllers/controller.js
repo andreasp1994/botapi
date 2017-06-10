@@ -11,25 +11,26 @@ exports.make_transfer = function(req, res) {
   			password: 'alice'
 		})
 
-		if(req.method == 'POST') {
-			var body = "";
+  		console.log(res.body);
+		// if(req.method == 'POST') {
+		// 	var body = "";
 
-			req.on('data', function (chunk) {
-				body += chunk;
-			});
+		// 	req.on('data', function (chunk) {
+		// 		body += chunk;
+		// 	});
 
 
-			req.on('end', function () {
-				console.log(body);
-			});
-		}
+		// 	req.on('end', function () {
+		// 		console.log(body);
+		// 	});
+		// }
 
 		await plugin.connect()
 		console.log('plugin connected')
 
 		const payment = await SPSP.quote(plugin, {
-		receiver: 'bob@usdledger.online',
-		sourceAmount: '1',
+			receiver: 'bob@usdledger.online',
+			sourceAmount: '1',
 		})
 
 		console.log('got SPSP payment details:', payment)
