@@ -11,20 +11,17 @@ exports.make_transfer = function(req, res) {
   			password: 'alice'
 		})
 
-		if(req.method == 'POST' && req.url == '/login') {
+		if(req.method == 'POST') {
+			var body = "";
+
+			req.on('data', function (chunk) {
+				body += chunk;
+			});
 
 
-		var body = "";
-
-		req.on('data', function (chunk) {
-			body += chunk;
-		});
-
-
-		req.on('end', function () {
-			console.log(body);
-		});
-
+			req.on('end', function () {
+				console.log(body);
+			});
 		}
 
 		await plugin.connect()
