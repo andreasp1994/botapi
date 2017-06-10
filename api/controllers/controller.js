@@ -43,7 +43,7 @@ exports.make_transfer = function(req, res) {
 
 		SPSP.sendPayment(plugin, payment).then(function (res){
 			res.send(JSON.stringify(payment));
-		}.catch(function(e) {
+		}).catch(function(e) {
 		    res.send(e);
 		});
 
