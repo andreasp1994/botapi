@@ -3,6 +3,11 @@
 const SPSP = require('ilp').SPSP
 const FiveBellsLedgerPlugin = require('ilp-plugin-bells')
 
+const plugin = new FiveBellsLedgerPlugin({
+  account: 'https://usdledger.online/ledger/accounts/alice',
+  password: 'alice'
+})
+
 exports.make_transfer = function(req, res) {
   ;(async function () {
   console.log(req);
