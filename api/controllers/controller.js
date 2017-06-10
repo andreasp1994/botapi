@@ -11,7 +11,7 @@ exports.make_transfer = function(req, res) {
   			password: 'alice'
 		})
 
-		if(req.method == POST && req.url == '/login') {
+		if(req.method == 'POST' && req.url == '/login') {
 
 
 		var body = "";
