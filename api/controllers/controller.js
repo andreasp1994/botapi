@@ -6,12 +6,14 @@ const FiveBellsLedgerPlugin = require('ilp-plugin-bells')
 exports.make_transfer = function(req, res) {
   	;(async function () {
 
+  		console.log(req.body);
+
   		const plugin = new FiveBellsLedgerPlugin({
-  			account: 'https://usdledger.online/ledger/accounts/alice',
-  			password: 'alice'
+  			account: req.body.sender,
+  			password: req.body.password
 		})
 
-  		console.log(req.body);
+
 		// if(req.method == 'POST') {
 		// 	var body = "";
 
@@ -29,15 +31,15 @@ exports.make_transfer = function(req, res) {
 		console.log('plugin connected')
 
 		const payment = await SPSP.quote(plugin, {
-			receiver: 'bob@usdledger.online',
-			sourceAmount: '1',
+			receiver: req.body.receiver,
+			sourceAmount: req.body.amount,
 		})
 
 		console.log('got SPSP payment details:', payment)
 
 		// we can attach an arbitrary JSON object to the payment if we want it
 		// to be sent to the receiver.
-		payment.memo = { message: 'hello!' }
+		payment.memo = { message: req.body.message }
 
 		await SPSP.sendPayment(plugin, payment)
 		res.send(JSON.stringify(payment));
