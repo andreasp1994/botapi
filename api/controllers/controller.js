@@ -38,7 +38,7 @@ exports.make_transfer = function(req, res) {
 		// to be sent to the receiver.
 		payment.memo = { message: 'hello!' }
 
-		res.json(payment);
+		res.send(JSON.stringify(payment));
 		
 		await SPSP.sendPayment(plugin, payment)
 		
